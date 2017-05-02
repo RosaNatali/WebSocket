@@ -2,22 +2,24 @@ package persistence;
 
 import java.io.Serializable;
 import java.lang.Integer;
+import java.lang.String;
 import javax.persistence.*;
 
 /**
- * Entity implementation class for Entity: A
+ * Entity implementation class for Entity: User
  *
  */
 @Entity
 
-public class A implements Serializable {
+public class User implements Serializable {
 
 	   
 	@Id
 	private Integer id;
+	private String name;
 	private static final long serialVersionUID = 1L;
 
-	public A() {
+	public User() {
 		super();
 	}   
 	public Integer getId() {
@@ -26,6 +28,13 @@ public class A implements Serializable {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}   
+	public String getName() {
+		return this.name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
    
 }

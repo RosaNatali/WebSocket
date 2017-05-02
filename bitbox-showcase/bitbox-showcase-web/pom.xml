@@ -9,11 +9,25 @@
 	<artifactId>bitbox-showcase-web</artifactId>
 	<packaging>war</packaging>
 
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Repo</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
+	</repositories>
+
 	<properties>
 		<failOnMissingWebXml>false</failOnMissingWebXml>
 	</properties>
 
 	<dependencies>
+		<dependency>
+		    <groupId>org.primefaces.themes</groupId>
+		    <artifactId>redmond</artifactId>
+		    <version>1.0.10</version>
+		</dependency>
+		
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>

@@ -1,27 +1,78 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:h="http://java.sun.com/jsf/html">
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html">
 
-<h:head>
-	<title>SLEAM-BOOK | ESPRIT</title>
-</h:head>
-<h:body>
-	<ui:composition template="/templates/homeTemplate.xhtml"
-		xmlns:p="http://primefaces.org/ui">
-		<ui:define name="content">
-			<f:view encoding="UTF-8" contentType="text/html">
+	<h:head>
+		<title>ESPRIT</title>
+	</h:head>
+	<h:body>
+		<ui:composition template="/templates/homeTemplate.xhtml"
+						xmlns:p="http://primefaces.org/ui">
+			<ui:define name="content">
+				<f:view encoding="UTF-8" contentType="text/html">
+					<h:outputText value="Add a User (Web Socket Way)" style="font-weight:bold;" styleClass="text-primary" />
+					<br/><br/>
+					<p:inputText id="messageinput" value="#{userBean.user.name}"/>
+        			<br/><br/>
+			        <p:commandButton value="Add" onclick="addUser();"/>
+			        <div id="messages"></div>
+			        
+			        <script type="text/javascript">
+			            var webSocket;
+			            var messages = document.getElementById("messages");
+			            var cnt=0;
+			            						
+						function addUser()
+						{
+							openSocket();
 
-				<h:form id="form">
-					This was a Sample
+							var text = document.getElementById("messageinput").value;
+			                webSocket.send(text);
+
+			                cnt=parseInt(cnt)+parseInt(1);
+				            var divData=document.getElementById("showCount");
+				            divData.innerHTML='&nbsp;' + cnt + '&nbsp;';//this part has been edited
+						}
+
+			            
+			            function openSocket()
+			            {
+			                if(webSocket !== undefined)
+				            {
+			                    return;
+			                }
+
+			                webSocket = new WebSocket("ws://localhost:8080/bitbox-showcase-web/echo");
+			                 
+			                webSocket.onopen = function(event)
+			                {
+			                    if(event.data === undefined)
+			                        return;
+			                    writeResponse(event.data);
+			                };
+			 
+			                webSocket.onmessage = function(event)
+			                {
+			                    writeResponse(event.data);
+			                };
+			 
+			                webSocket.onclose = function(event)
+			                {
+			                    writeResponse("Connection closed");
+			                };
+			            }
+
+			            function writeResponse(text)
+			            {
+			                messages.innerHTML += "<br/>" + '&nbsp;' + '&nbsp;' + '&nbsp;' + text;
+			            }
+			        </script>
+				    <br/><br/>
 					
-					<p:panel header="daly">
-					
-					</p:panel>
-				</h:form>
-			</f:view>
-		</ui:define>
-	</ui:composition>
-</h:body>
+				</f:view>
+			</ui:define>
+		</ui:composition>
+	</h:body>
 </html>

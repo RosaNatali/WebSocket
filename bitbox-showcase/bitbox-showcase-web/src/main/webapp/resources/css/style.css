@@ -1,0 +1,12 @@
+@CHARSET "ISO-8859-1";
+.box
+{
+	border-radius: 100%;
+    behavior: url(PIE.htc); /* remove if you don't care about IE8 */
+    width: 500px;
+    height: 500px;
+}
+.red
+{
+	background:#F10D0D;
+}

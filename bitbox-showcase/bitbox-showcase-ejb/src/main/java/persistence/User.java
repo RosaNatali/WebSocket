@@ -11,10 +11,11 @@ import javax.persistence.*;
  */
 @Entity
 
-public class User implements Serializable {
-
-	   
+public class User implements Serializable
+{
+	
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String name;
 	private static final long serialVersionUID = 1L;
@@ -22,6 +23,12 @@ public class User implements Serializable {
 	public User() {
 		super();
 	}   
+	
+	public User(String name) {
+		super();
+		this.name = name;
+	}
+
 	public Integer getId() {
 		return this.id;
 	}

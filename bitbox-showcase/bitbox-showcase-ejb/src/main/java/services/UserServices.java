@@ -1,5 +1,7 @@
 package services;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,5 +27,15 @@ public class UserServices implements UserServicesRemote, UserServicesLocal {
 		entityManager.merge(user);
 
 	}
+	
+	@Override
+	public List<User> findAllUsers() {
+		return entityManager.createQuery("SELECT u FROM User u", User.class).getResultList();
+	}
 
+	@Override
+	public User findUserById(Integer id) {
+		return entityManager.find(User.class, id);
+	}
+	
 }

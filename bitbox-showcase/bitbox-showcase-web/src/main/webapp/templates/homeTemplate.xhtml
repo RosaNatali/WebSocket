@@ -10,7 +10,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title><ui:insert name="title">SLEAM-BOOK | ESPRIT</ui:insert>
+	<title><ui:insert name="title">BITBOX-SHOWCASE</ui:insert>
 	</title>
 
 	<link rel="shortcut icon" type="image/x-icon"
@@ -21,6 +21,7 @@
 	<h:outputStylesheet name="dist/css/sb-admin-2.css" />
 	<h:outputStylesheet name="vendor/morrisjs/morris.css" />
 	<h:outputStylesheet name="vendor/font-awesome/css/font-awesome.min.css" />
+	<h:outputStylesheet name="css/style.css" />
 	
 	<h:outputScript name="vendor/jquery/jquery.min.js" />
 	<h:outputScript name="vendor/bootstrap/js/bootstrap.min.js" />
@@ -33,7 +34,7 @@
 
 </h:head>
 <h:body>
-	<h:form enctype="multipart/form-data">
+	
 		<div id="wrapper">
 			<nav class="navbar navbar-default navbar-static-top"
 				role="navigation" style="margin-bottom: 0">
@@ -54,7 +55,6 @@
 				</a>
 					<ul class="dropdown-menu dropdown-messages">
 						<br />
-						ss
 						<br />
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle"
@@ -65,24 +65,37 @@
 						<br />
 						<br />
 					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <i class="fa fa-bell fa-fw"></i>
+					
+					
+					
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<i id="showCount" class="box red" style="color:#ffffff;font-size: 13px;ont-style: arial"></i>
+						<i class="fa fa-bell fa-fw"></i>
 						<i class="fa fa-caret-down"></i>
-				</a>
+						<div ></div>
+					</a>
 					<ul class="dropdown-menu dropdown-alerts">
+						<div id="messages"></div>
 						<br />
-						<br />
-					</ul></li>
-				<li class="dropdown"><a class="dropdown-toggle"
-					data-toggle="dropdown" href="#"> <i class="fa fa-user fa-fw"></i>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+						<i class="fa fa-user fa-fw"></i>
 						<i class="fa fa-caret-down"></i>
-				</a>
+					</a>
 					<ul class="dropdown-menu dropdown-user">
-						<li><h:commandLink action="#{userBean.quit()}">
-								<i class="fa fa-sign-out fa-fw"></i>
-		                        		Logout
-		                        	</h:commandLink></li>
-					</ul></li>
+						<li>
+							<h:form>
+								<h:commandLink action="#{userBean.quit()}">
+									<i class="fa fa-sign-out fa-fw"></i>
+			                        		Logout
+			                    </h:commandLink>
+		                    </h:form>
+		                </li>
+					</ul>
+				</li>
 			</ul>
 
 			<div class="navbar-default sidebar" role="navigation">
@@ -112,7 +125,7 @@
 			<div id="page-wrapper">
 				<div class="row">
 					<div class="col-lg-12">
-						<h4 class="page-header">Hello #{userBean.connectedUser.name}</h4>
+						<h4 class="page-header">Hello</h4>
 						<ui:insert name="content">
 							<p:inputText value="Welcome" />
 						</ui:insert>
@@ -120,7 +133,7 @@
 				</div>
 			</div>
 		</div>
-	</h:form>
+	
 
 </h:body>
 </html>

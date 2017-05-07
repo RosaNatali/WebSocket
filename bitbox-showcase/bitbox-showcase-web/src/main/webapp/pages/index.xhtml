@@ -16,7 +16,7 @@
 					<br/><br/>
 					<p:inputText id="messageinput" value="#{userBean.user.name}"/>
         			<br/><br/>
-			        <p:commandButton value="Add" onclick="addUser();"/>
+			        <p:commandButton value="Add" onclick="lolitton();"/>
 			        <div id="messages"></div>
 			        
 			        <script type="text/javascript">
@@ -24,7 +24,7 @@
 			            var messages = document.getElementById("messages");
 			            var cnt=0;
 			            						
-						function addUser()
+						function lolitton()
 						{
 							openSocket();
 
@@ -39,9 +39,8 @@
 			            
 			            function openSocket()
 			            {
-			                if(webSocket !== undefined)
-				            {
-			                    return;
+			                if(webSocket !== undefined){
+			                  return;
 			                }
 
 			                webSocket = new WebSocket("ws://localhost:8080/bitbox-showcase-web/echo");
@@ -53,13 +52,11 @@
 			                    writeResponse(event.data);
 			                };
 			 
-			                webSocket.onmessage = function(event)
-			                {
+			                webSocket.onmessage = function(event){
 			                    writeResponse(event.data);
 			                };
 			 
-			                webSocket.onclose = function(event)
-			                {
+			                webSocket.onclose = function(event){
 			                    writeResponse("Connection closed");
 			                };
 			            }
